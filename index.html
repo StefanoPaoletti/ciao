@@ -1,1 +1,375 @@
-Ciao!
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analisi | Ottica Paoletti</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #0a0a0a;
+            --color-surface: #141414;
+            --color-card: #1a1a1a;
+            --color-text: #f5f5f0;
+            --color-text-muted: #8a8a85;
+            --color-accent: #c9a96e;
+            --color-accent-soft: rgba(201, 169, 110, 0.15);
+            --color-border: rgba(201, 169, 110, 0.2);
+            --font-display: 'Cormorant Garamond', serif;
+            --font-body: 'Outfit', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--color-bg);
+            color: var(--color-text);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated background */
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(201, 169, 110, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(201, 169, 110, 0.05) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(30, 30, 30, 1) 0%, var(--color-bg) 70%);
+            z-index: -1;
+        }
+
+        /* Subtle grain texture */
+        .grain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        header {
+            padding: 3rem 0;
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .logo-wrapper {
+            display: inline-block;
+            position: relative;
+        }
+
+        .logo-line {
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+            margin: 0 auto 1.5rem;
+            animation: expandLine 1.2s ease-out 0.3s both;
+        }
+
+        @keyframes expandLine {
+            from { width: 0; opacity: 0; }
+            to { width: 60px; opacity: 1; }
+        }
+
+        .brand {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 300;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--color-text);
+            margin-bottom: 0.5rem;
+        }
+
+        .brand span {
+            color: var(--color-accent);
+        }
+
+        .tagline {
+            font-size: 0.85rem;
+            font-weight: 300;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--color-text-muted);
+            margin-top: 1rem;
+        }
+
+        /* Main content */
+        main {
+            padding: 4rem 0 6rem;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 400;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--color-accent);
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeIn 1s ease-out 0.5s both;
+        }
+
+        /* Cards grid */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .tool-card {
+            position: relative;
+            background: var(--color-card);
+            border: 1px solid var(--color-border);
+            border-radius: 2px;
+            padding: 2.5rem 2rem;
+            text-decoration: none;
+            color: var(--color-text);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            overflow: hidden;
+            animation: slideUp 0.8s ease-out both;
+        }
+
+        .tool-card:nth-child(1) { animation-delay: 0.6s; }
+        .tool-card:nth-child(2) { animation-delay: 0.75s; }
+        .tool-card:nth-child(3) { animation-delay: 0.9s; }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--color-accent-soft) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .tool-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 0;
+            background: var(--color-accent);
+            transition: height 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .tool-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--color-accent);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(201, 169, 110, 0.1);
+        }
+
+        .tool-card:hover::before {
+            opacity: 1;
+        }
+
+        .tool-card:hover::after {
+            height: 100%;
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 1.5rem;
+            color: var(--color-accent);
+            opacity: 0.9;
+            transition: transform 0.4s ease, opacity 0.3s ease;
+        }
+
+        .tool-card:hover .card-icon {
+            transform: scale(1.1);
+            opacity: 1;
+        }
+
+        .card-title {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            font-weight: 400;
+            margin-bottom: 0.75rem;
+            letter-spacing: 0.02em;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-description {
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: var(--color-text-muted);
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-arrow {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            width: 24px;
+            height: 24px;
+            color: var(--color-accent);
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .tool-card:hover .card-arrow {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            border-top: 1px solid var(--color-border);
+            animation: fadeIn 1s ease-out 1.1s both;
+        }
+
+        .footer-text {
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+            letter-spacing: 0.1em;
+        }
+
+        .footer-text span {
+            color: var(--color-accent);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            header {
+                padding: 2rem 0;
+            }
+
+            .tools-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .tool-card {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+    <div class="grain"></div>
+
+    <div class="container">
+        <header>
+            <div class="logo-wrapper">
+                <div class="logo-line"></div>
+                <h1 class="brand">Ottica <span>Paoletti</span></h1>
+                <p class="tagline">Strumenti di Analisi</p>
+            </div>
+        </header>
+
+        <main>
+            <p class="section-title">Seleziona uno strumento</p>
+
+            <div class="tools-grid">
+                <a href="https://fidia.otticapaoletti.it" class="tool-card">
+                    <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 3h6v3a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V3z"/>
+                        <path d="M10 7v2a2 2 0 0 0-2 2v6a4 4 0 0 0 8 0v-6a2 2 0 0 0-2-2V7"/>
+                        <path d="M12 21v-2"/>
+                        <circle cx="12" cy="22" r="1"/>
+                    </svg>
+                    <h2 class="card-title">Fidia</h2>
+                    <p class="card-description">Gestione e analisi colliri, prodotti oftalmici e trattamenti oculari.</p>
+                    <svg class="card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+
+                <a href="https://soluzioni.otticapaoletti.it" class="tool-card">
+                    <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2C12 2 6 10 6 14a6 6 0 1 0 12 0c0-4-6-12-6-12z"/>
+                        <path d="M10 14a2 2 0 0 0 4 0"/>
+                    </svg>
+                    <h2 class="card-title">Soluzioni</h2>
+                    <p class="card-description">Soluzioni per lenti a contatto, sistemi di manutenzione e prodotti per la cura.</p>
+                    <svg class="card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+
+                <a href="https://lac.otticapaoletti.it" class="tool-card">
+                    <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <ellipse cx="12" cy="12" rx="10" ry="4"/>
+                        <path d="M2 12c0 2.5 4.5 6 10 6s10-3.5 10-6"/>
+                        <ellipse cx="12" cy="12" rx="5" ry="2"/>
+                    </svg>
+                    <h2 class="card-title">LAC</h2>
+                    <p class="card-description">Gestione lenti a contatto, parametri applicativi e monitoraggio forniture.</p>
+                    <svg class="card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </main>
+
+        <footer>
+            <p class="footer-text">© 2025 <span>Ottica Paoletti</span> — Tutti i diritti riservati</p>
+        </footer>
+    </div>
+</body>
+</html>
