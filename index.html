@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analisi | Ottica Paoletti</title>
+    <title>Ciao | Ottica Paoletti</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
@@ -206,9 +206,9 @@
 
         .tools-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
             gap: 3.5rem;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
@@ -233,6 +233,7 @@
         .tool-card:nth-child(1) { animation-delay: 1s; }
         .tool-card:nth-child(2) { animation-delay: 1.2s; }
         .tool-card:nth-child(3) { animation-delay: 1.4s; }
+        .tool-card:nth-child(4) { animation-delay: 1.6s; }
 
         @keyframes slideUp {
             from {
@@ -471,7 +472,7 @@
             text-align: center;
             padding: 4rem 0;
             border-top: 1px solid rgba(201, 169, 110, 0.15);
-            animation: fadeIn 1.5s ease-out 1.6s both;
+            animation: fadeIn 1.5s ease-out 1.8s both;
             position: relative;
         }
 
@@ -592,6 +593,31 @@
                     <div class="card-content">
                         <h2 class="card-title">Cooper</h2>
                         <p class="card-description">Lenti a contatto.</p>
+                    </div>
+                    <svg class="card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+
+                <a href="https://ips.otticapaoletti.it" target="_blank" class="tool-card" data-tilt>
+                    <div class="card-glow-top"></div>
+                    <div class="card-glow-side"></div>
+                    <div class="card-shine"></div>
+                    <div class="card-icon-wrapper">
+                        <div class="card-icon-ring"></div>
+                        <div class="card-icon-ring"></div>
+                        <div class="card-icon-bg"></div>
+                        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M6 9v10a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V9"/>
+                            <path d="M9 5h6"/>
+                            <path d="M6 9h12"/>
+                            <path d="M9 13h6"/>
+                            <path d="M9 17h6"/>
+                        </svg>
+                    </div>
+                    <div class="card-content">
+                        <h2 class="card-title">Etichette IPS</h2>
+                        <p class="card-description">Convertitore di etichette.</p>
                     </div>
                     <svg class="card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M5 12h14M12 5l7 7-7 7"/>
